@@ -79,7 +79,7 @@ const projectList = [
     {
         imagePath: "/assets/images/projects/kmovie.png",
         name: "Kmovie",
-        description: "  High-performance movie website built with Nextjs, TypeScript, Tailwind CSS, Node.js, Express.js, MongoDB.",
+        description: "High-performance movie website built with Nextjs, TypeScript, Tailwind CSS, Node.js, Express.js, MongoDB.",
         github: "https://github.com/baokien2000/kmovie",
         live: "https://kmovie-one.vercel.app/",
         target: "_blank",
