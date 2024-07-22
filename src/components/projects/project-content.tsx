@@ -87,7 +87,7 @@ const projectList = [
     {
         imagePath: "/assets/images/projects/kstore.png",
         name: "Kstore",
-        description: "  E-commerce and CMS website built with Reactjs, MongoDB, Material UI, Antd, Redux , Node.js, Express.js, MongoDB.",
+        description: "E-commerce and CMS website built with Reactjs, MongoDB, Material UI, Antd, Redux , Node.js, Express.js, MongoDB.",
         github: "https://github.com/baokien2000/shoe-store",
         live: "https://kstore2000.netlify.app/",
         target: "_blank",
