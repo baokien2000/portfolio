@@ -77,7 +77,7 @@ export default ProjectContent;
 
 const projectList = [
     {
-        imagePath: "/assets/images/projects/kmovie.png",
+        imagePath: "/assets/images/projects/kmovie_project.png",
         name: "Kmovie",
         description: "High-performance movie website built with Nextjs, TypeScript, Tailwind CSS, Node.js, Express.js, MongoDB.",
         github: "https://github.com/baokien2000/kmovie",
@@ -85,7 +85,7 @@ const projectList = [
         target: "_blank",
     },
     {
-        imagePath: "/assets/images/projects/kstore.png",
+        imagePath: "/assets/images/projects/kstore_project.png",
         name: "Kstore",
         description: "  E-commerce and CMS website built with Reactjs, MongoDB, Material UI, Antd, Redux , Node.js, Express.js, MongoDB.",
         github: "https://github.com/baokien2000/shoe-store",
@@ -93,7 +93,7 @@ const projectList = [
         target: "_blank",
     },
     {
-        imagePath: "/assets/images/projects/portfolio_v1.png",
+        imagePath: "/assets/images/projects/portfolio_v1_project.png",
         name: "Portfolio v1",
         description: "My first portfolio website built with Reactjs, Bootstrap.",
         github: "https://github.com/baokien2000/BKApp",
