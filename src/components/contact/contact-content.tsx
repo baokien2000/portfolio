@@ -79,7 +79,7 @@ const ContactContent = () => {
                 id="Email"
                 type="email"
                 name="Email"
-                className={"border mb-1 rounded outline-none p-2 bg-transparent relative " + (emailError ? " border-red-500" : "")}
+                className={"border mb-1 rounded outline-none p-2 bg-transparent relative " + (emailError ? " border-red-500" : " ")}
                 placeholder="email@gmail.com"
             />
             <motion.label {...contactMotionOptiops} htmlFor="Message" className="flex items-center justify-between">
