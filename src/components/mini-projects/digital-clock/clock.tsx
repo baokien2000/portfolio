@@ -23,21 +23,21 @@ const Clock = () => {
                     delay: 1,
                 },
             }}
-            className=" gap-5  flex items-center justify-center "
+            className="gap-3 sm:gap-5  flex items-center justify-center "
         >
-            <div className="p-5 aspect-square  w-auto h-[110px] flex items-center justify-center bg-white/5 rounded">
+            <div className="p-5 aspect-square  w-auto h-12 smallPhone:h-16 sm:h-20 md:h-[110px] flex items-center justify-center bg-white/5 rounded">
                 {time === 0 ? "00" : dayjs(time).format("HH")}
             </div>
             <div>:</div>
-            <div className="p-5 bg-white/5 aspect-square  w-auto h-[110px] flex items-center justify-center rounded">
+            <div className="p-5 bg-white/5 aspect-square  w-auto h-12 smallPhone:h-16 sm:h-20 md:h-[110px] flex items-center justify-center rounded">
                 {time === 0 ? "00" : dayjs(time).format("mm")}
             </div>
             <div>:</div>
-            <div className="p-5 aspect-square w-auto h-[110px] flex items-center justify-center bg-white/5 rounded  ">
+            <div className="p-5 aspect-square w-auto h-12 smallPhone:h-16 sm:h-20 md:h-[110px] flex items-center justify-center bg-white/5 rounded  ">
                 <p className="bg-main-gradient text-transparent bg-clip-text">{time === 0 ? "00" : dayjs(time).format("ss")}</p>
             </div>
-            <div className="h-[110px] flex items-start justify-center ">
-                <p className="text-[30px]">{time === 0 ? "AM" : dayjs(time).format("A")}</p>
+            <div className="h-12 smallPhone:h-16 sm:h-20 md:h-[110px] flex items-start justify-center ">
+                <p className="text-xs smallPhone:text-base sm:text-2xl md:text-[30px]">{time === 0 ? "AM" : dayjs(time).format("A")}</p>
             </div>
         </motion.div>
     );

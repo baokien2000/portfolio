@@ -8,10 +8,9 @@ import { useDeviceSize } from "@/hooks/useDeviceSize";
 const LiquidContainer = () => {
     const router = useRouter();
     const [width, height] = useDeviceSize();
-    console.log("{ x: width / 2, y: height/2 }", { x: width / 2, y: height / 2 });
     return (
-        <div className="flex gap-5 flex-col min-h-[100svh] bg-white/[4%]  h-full w-full py-10 px-20">
-            <div>
+        <div className="flex gap-5 flex-col min-h-[100svh]   h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
+            <div className=" max-w-screen-laptop mx-auto w-full">
                 <motion.h1
                     viewport={{ once: true }}
                     initial={{ x: -20, opacity: 0 }}
@@ -23,7 +22,7 @@ const LiquidContainer = () => {
                         },
                     }}
                     id="experience"
-                    className="text-[40px] font-bold"
+                    className="text-[32px] sm:text-[40px text-left font-bold"
                 >
                     Liquid Effect
                 </motion.h1>

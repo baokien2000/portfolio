@@ -1,7 +1,53 @@
 "use client";
 import { motion } from "framer-motion";
 import React from "react";
-import Image from "next/image";
+import SkillCard from "./skill-card";
+
+const Skills = () => {
+    return (
+        <div className="flex gap-5 flex-col   h-fit w-full  p-4 md:py-10 md:px-10 mediumLaptop:px-20">
+            <motion.h2
+                viewport={{ once: true }}
+                initial={{ x: -20, opacity: 0 }}
+                whileInView={{
+                    x: 0,
+                    opacity: 1,
+                    transition: {
+                        duration: 1,
+                    },
+                }}
+                id="skills"
+                className="text-[32px] sm:text-[40px] sm:text-left text-center font-bold"
+            >
+                Skills
+            </motion.h2>
+            <motion.div
+                viewport={{ once: true }}
+                variants={{
+                    hidden: { opacity: 1 },
+                    visible: {
+                        opacity: 1,
+                        transition: {
+                            delayChildren: 0.3,
+                            staggerChildren: 0.2,
+                        },
+                    },
+                }}
+                initial="hidden"
+                whileInView="visible"
+                // animate="visible"
+                className="flex flex-wrap gap-3  justify-center smallLaptop:justify-start "
+            >
+                {skillList.map((i) => (
+                    <SkillCard key={i.title} title={i.title} imagePath={i.imagePath} />
+                ))}
+            </motion.div>
+        </div>
+    );
+};
+
+export default Skills;
+
 const skillList = [
     {
         title: "HTML5",
@@ -60,68 +106,3 @@ const skillList = [
         imagePath: "/assets/images/skills/react-query.svg",
     },
 ];
-const Skills = () => {
-    return (
-        <div className="flex gap-5 flex-col   h-fit w-full p-4  sm:py-10 sm:px-20">
-            <motion.h2
-                viewport={{ once: true }}
-                initial={{ x: -20, opacity: 0 }}
-                whileInView={{
-                    x: 0,
-                    opacity: 1,
-                    transition: {
-                        duration: 1,
-                    },
-                }}
-                id="skills"
-                className="text-[32px] sm:text-[40px] sm:text-left text-center font-bold"
-            >
-                Skills
-            </motion.h2>
-            <motion.div
-                viewport={{ once: true }}
-                variants={{
-                    hidden: { opacity: 1 },
-                    visible: {
-                        opacity: 1,
-                        transition: {
-                            delayChildren: 0.3,
-                            staggerChildren: 0.2,
-                        },
-                    },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                // animate="visible"
-                className="flex flex-wrap gap-3  justify-center"
-            >
-                {skillList.map((i) => (
-                    <SkillItem key={i.title} title={i.title} imagePath={i.imagePath} />
-                ))}
-            </motion.div>
-        </div>
-    );
-};
-
-export default Skills;
-
-const SkillItem = ({ title, imagePath }: { title: string; imagePath: string }) => {
-    return (
-        <motion.div
-            viewport={{ once: true }}
-            variants={{
-                hidden: { y: 20, opacity: 0 },
-                visible: {
-                    y: 0,
-                    opacity: 1,
-                },
-            }}
-            className="text-xs flex gap-2  flex-col items-center justify-center   h-[100px] w-[160px]  gradient-border"
-        >
-            <div className="relative h-[50px] w-[50px]">
-                <Image sizes="200px" className="object-contain min-h-[50px] max-h-[50px] " fill src={imagePath} alt={title} />
-            </div>
-            <p>{title}</p>
-        </motion.div>
-    );
-};

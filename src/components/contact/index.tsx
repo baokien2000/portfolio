@@ -6,7 +6,7 @@ import ContactMedia from "./contact-media";
 
 const Contact = () => {
     return (
-        <div className="flex sm:gap-5 gap-8 flex-col   h-fit w-full p-4 py-10 sm:px-20">
+        <div className="flex sm:gap-5 gap-8 flex-col   h-fit w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <motion.h2
                 viewport={{ once: true }}
                 initial={{ x: -20, opacity: 0 }}

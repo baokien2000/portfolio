@@ -34,7 +34,6 @@ const ContactContent = () => {
         } else {
             await verifyCaptcha(value)
                 .then((res) => {
-                    console.log(res);
                     setIsverified(res.success);
                 })
                 .catch(() => setIsverified(false));

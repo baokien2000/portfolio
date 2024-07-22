@@ -1,16 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import { motion, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ArrowDown, ArrowDownGradient } from "../../../../public/assets/svg";
-import { useDeviceSize } from "@/hooks/useDeviceSize";
 import Clock from "./clock";
 const DigitalClockContainer = () => {
     const router = useRouter();
-    const [width, height] = useDeviceSize();
-    console.log("{ x: width / 2, y: height/2 }", { x: width / 2, y: height / 2 });
     return (
-        <div className="flex gap-5 flex-col min-h-[100svh] bg-white/[4%]  h-full w-full py-10 px-20">
+        <div className="flex gap-5 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <div>
                 <motion.h1
                     viewport={{ once: true }}
@@ -23,7 +20,7 @@ const DigitalClockContainer = () => {
                         },
                     }}
                     id="experience"
-                    className="text-[40px] font-bold"
+                    className="text-[32px] sm:text-[40px text-left font-bold"
                 >
                     Digital Clock
                 </motion.h1>
@@ -33,7 +30,7 @@ const DigitalClockContainer = () => {
                     <p className="bg-white group-hover:bg-main-gradient text-transparent bg-clip-text font-semibold">Back</p>
                 </div>
             </div>
-            <div className="absolute pointer-events-none leading-[1.2] font-bold text-[60px] top-0 left-0 w-screen h-screen flex items-center justify-center">
+            <div className="absolute pointer-events-none leading-[1.2] font-bold text-2xl sm:text-[40px] md:text-[60px] top-0 left-0 w-screen h-screen flex items-center justify-center">
                 <Clock />
             </div>
         </div>

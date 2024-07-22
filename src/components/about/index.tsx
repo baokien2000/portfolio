@@ -18,7 +18,7 @@ const About = () => {
         },
     };
     return (
-        <div id="about" className="flex gap-8 sm:gap-5 flex-col min-h-[100svh]  h-full w-full p-4 sm:py-10 sm:px-20">
+        <div id="about" className="flex gap-8 sm:gap-5 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <motion.h2
                 viewport={{ once: true }}
                 initial={{ x: -20, opacity: 0 }}
@@ -33,15 +33,18 @@ const About = () => {
             >
                 About
             </motion.h2>
-            <div className="flex  flex-col sm:flex-row gap-10 text-white/80">
-                <motion.div {...motionOption} className="w-[210px] mx-auto sm:w-[240px] sm:min-w-[240px] h-auto aspect-[430/648] relative">
+            <div className="flex  flex-col sm:flex-row sm:items-start gap-10 sm:gap-5 md:gap-10 text-white/80">
+                <motion.div
+                    {...motionOption}
+                    className="w-[210px] min-w-[210px] mx-auto md:w-[240px] md:min-w-[240px] h-auto aspect-[430/648] relative"
+                >
                     <Image
                         src="/assets/images/profile.jpg"
                         loading="lazy"
                         fill
                         alt="Profile"
                         sizes="(max-width: 768px) 280px, 320px"
-                        className="rounded sm:min-w-[240px]"
+                        className="rounded md:min-w-[240px]"
                     />
                 </motion.div>
                 <div className=" flex gap-3 flex-col text-sm sm:text-base">

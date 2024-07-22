@@ -8,7 +8,7 @@ import Skills from "@/components/skills";
 
 export default function Home() {
     return (
-        <main className=" z-[1] relative text-white bg-transparent">
+        <main className=" z-[1] relative text-white bg-transparent max-w-screen-laptop mx-auto">
             <Hero />
             <About />
             <Experience />

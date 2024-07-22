@@ -6,7 +6,6 @@ interface optionsProps{
 
 }
 export const sendEmail = async (options: optionsProps) => {
-    console.log(" process.env.SMTP_MAIL", process.env.SMTP_MAIL);
     var transporter = nodeMailer.createTransport({
         service: 'gmail',
         auth: {

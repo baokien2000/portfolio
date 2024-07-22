@@ -5,7 +5,7 @@ import ProjectContent from "./project-content";
 
 const Projects = () => {
     return (
-        <div className="flex sm:gap-5  gap-8 flex-col min-h-[100svh]  h-full w-full py-10 p-4 sm:px-20">
+        <div className="flex sm:gap-5  gap-8 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <motion.h2
                 viewport={{ once: true }}
                 initial={{ x: -20, opacity: 0 }}

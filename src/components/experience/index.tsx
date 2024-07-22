@@ -5,7 +5,7 @@ import ExperienceContainer from "./container";
 const Experience = () => {
     // Biến đổi scrollYProgress từ 0 đến 1 thành giá trị từ 0 đến 684
     return (
-        <div className="flex gap-8 sm:gap-5  flex-col min-h-[100svh] h-full w-full py-10 sm:px-20 ">
+        <div className="flex gap-8 sm:gap-5  flex-col min-h-[100svh] h-full w-full sm:p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <motion.h2
                 viewport={{ once: true }}
                 initial={{ x: -20, opacity: 0 }}
@@ -17,7 +17,7 @@ const Experience = () => {
                     },
                 }}
                 id="experience"
-                className="text-[32px] sm:text-[40px] sm:text-left text-center font-bold"
+                className="text-[32px] sm:text-[40px]  sm:text-left text-center font-bold"
             >
                 Experience
             </motion.h2>
