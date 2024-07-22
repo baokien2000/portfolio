@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     description: `I am excited to apply for a challenging and rewarding position that allows me to apply my skills and knowledge
 to become a professional programmer.`,
     icons: {
-        icon: "/klogo.ico",
-        apple: "/klogo.ico",
+        icon: "/favicon.ico",
+        apple: "/favicon.ico",
     },
 };
 
