@@ -57,9 +57,9 @@ const ContactContent = () => {
 
     return (
         <form ref={ref} action={formAction} className="flex gap-2 w-full flex-col max-w-[500px]">
-            <motion.label {...contactMotionOptiops} htmlFor="Name" className="flex justify-between">
+            <motion.label {...contactMotionOptiops} htmlFor="Name" className="flex items-center justify-between">
                 <span>Name</span>
-                {nameError && <span className="text-red-500 text-sm"> {nameError}</span>}
+                {nameError && <span className="text-red-500 text-xs"> {nameError}</span>}
             </motion.label>
             <motion.input
                 {...contactMotionOptiops}
@@ -69,9 +69,9 @@ const ContactContent = () => {
                 className={"border mb-1 rounded outline-none p-2 bg-transparent relative " + (nameError ? " border-red-500" : "")}
                 placeholder="Kien"
             />
-            <motion.label {...contactMotionOptiops} htmlFor="Email" className="flex justify-between">
+            <motion.label {...contactMotionOptiops} htmlFor="Email" className="flex items-center justify-between">
                 <span>Email</span>
-                {emailError && <span className="text-red-500 text-sm"> {emailError}</span>}
+                {emailError && <span className="text-red-500 text-xs"> {emailError}</span>}
             </motion.label>
             <motion.input
                 {...contactMotionOptiops}
@@ -82,9 +82,9 @@ const ContactContent = () => {
                 className={"border mb-1 rounded outline-none p-2 bg-transparent relative " + (emailError ? " border-red-500" : "")}
                 placeholder="email@gmail.com"
             />
-            <motion.label {...contactMotionOptiops} htmlFor="Message" className="flex justify-between">
+            <motion.label {...contactMotionOptiops} htmlFor="Message" className="flex items-center justify-between">
                 <span>Message</span>
-                {messageError && <span className="text-red-500 text-sm"> {messageError}</span>}
+                {messageError && <span className="text-red-500 text-xs"> {messageError}</span>}
             </motion.label>
             <motion.textarea
                 {...contactMotionOptiops}
