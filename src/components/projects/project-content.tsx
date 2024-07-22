@@ -95,7 +95,7 @@ const projectList = [
     {
         imagePath: "/assets/images/projects/portfolio_v1.png",
         name: "Portfolio v1",
-        description: "  My first portfolio website built with Reactjs, Bootstrap.",
+        description: "My first portfolio website built with Reactjs, Bootstrap.",
         github: "https://github.com/baokien2000/BKApp",
         live: "https://bk2000.netlify.app/",
         target: "_blank",
