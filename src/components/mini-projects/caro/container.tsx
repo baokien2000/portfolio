@@ -8,7 +8,7 @@ import Caro from "./caro";
 const CaroContainer = () => {
     const router = useRouter();
     return (
-        <div className="relative flex flex-col h-[100svh]  w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
+        <div className="relative flex flex-col min-h-[100svh]  w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <div className=" max-w-screen-laptop mx-auto w-full ">
                 <motion.h1
                     viewport={{ once: true }}

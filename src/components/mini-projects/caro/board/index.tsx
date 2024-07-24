@@ -8,10 +8,9 @@ interface BoardProps {
     onClick: (i: number) => void;
     current: number;
     tableSize: number;
-    setWinner: React.Dispatch<React.SetStateAction<SquareType[]>>;
 }
-export default function Board({ tableSize, current, onClick, squares, setWinner }: BoardProps) {
-    const winner = calculateWinner(squares);
+export default function Board({ tableSize, current, onClick, squares }: BoardProps) {
+    const winner = calculateWinner(squares, tableSize);
     return (
         <div
             className={`grid grid-cols-${tableSize} gap-0.5`}
@@ -25,6 +24,7 @@ export default function Board({ tableSize, current, onClick, squares, setWinner 
                         key={i}
                         value={squares[i]}
                         onClick={() => onClick(i)}
+                        disabled={winner || squares[i] ? true : false}
                         current={current}
                         index={i}
                         isWinnerMove={winner ? winner.line.includes(i) : false}

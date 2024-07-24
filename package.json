@@ -12,6 +12,7 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.12",
     "framer-motion": "^11.3.2",
     "next": "14.2.5",
@@ -20,6 +21,7 @@
     "react-dom": "^18",
     "react-google-recaptcha": "^3.1.0",
     "react-hot-toast": "^2.4.1",
+    "tailwind-merge": "^2.4.0",
     "uuid": "^10.0.0",
     "yarn": "^1.22.22"
   },
