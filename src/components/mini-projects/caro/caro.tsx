@@ -4,7 +4,7 @@ import Board from "./board";
 import UserBox from "./user/user-box";
 import CaroGameStatus from "./control/status";
 
-export type SquareType = "X" | "O" | "Y" | null;
+export type SquareType = "X" | "O" | null;
 export type HistoryType = { squares: SquareType[] }[];
 
 const tableSize = 16;
@@ -13,6 +13,7 @@ const Caro = () => {
     const [history, setHistory] = useState<HistoryType>(initialHistory);
     const [turn, setTurn] = useState<"X" | "O">("X");
     const [winnerList, setWinnerList] = useState<SquareType[]>([]);
+    const [winner, setWinner] = useState<{ winner: SquareType; line: number[] } | null>(null);
     const [round, setRound] = useState(1);
     const [stepNumber, setStepNumber] = useState(0);
     const [current, setCurrent] = useState(-1);
@@ -32,6 +33,7 @@ const Caro = () => {
     };
     const handleSetWinner = (newWinner: SquareType[]) => {
         setWinnerList(newWinner);
+
         const isGameOver = newWinner.filter((i) => i === "O").length >= 3 || newWinner.filter((i) => i === "X").length >= 3;
         if (!isGameOver) {
             setGameCountDown(30);
@@ -55,26 +57,29 @@ const Caro = () => {
             return;
         }
 
-        // if (turn === "X") {
-        //     clearTimeCountDown(player1CountDownRef);
-        //     player2CountDownRef.current = setInterval(() => {
-        //         setPlayer2CountDown((prev) => {
-        //             if (prev - 0.25 === 0) handleSetWinner([...winnerList, "X"]);
-        //             return prev - 0.25;
-        //         });
-        //     }, 250);
-        // } else {
-        //     clearTimeCountDown(player2CountDownRef);
-        //     player1CountDownRef.current = setInterval(() => {
-        //         setPlayer1CountDown((prev) => {
-        //             if (prev - 0.25 === 0) handleSetWinner([...winnerList, "O"]);
-        //             return prev - 0.25;
-        //         });
-        //     }, 250);
-        // }
+        if (turn === "X") {
+            clearTimeCountDown(player1CountDownRef);
+            // player2CountDownRef.current = setInterval(() => {
+            //     setPlayer2CountDown((prev) => {
+            //         if (prev - 0.25 === 0) handleSetWinner([...winnerList, "X"]);
+            //         return prev - 0.25;
+            //     });
+            // }, 250);
+        } else {
+            clearTimeCountDown(player2CountDownRef);
+            // player1CountDownRef.current = setInterval(() => {
+            //     setPlayer1CountDown((prev) => {
+            //         if (prev - 0.25 === 0) handleSetWinner([...winnerList, "O"]);
+            //         return prev - 0.25;
+            //     });
+            // }, 250);
+        }
         squares[i] = turn;
-        // const theWinner = calculateWinner(squares);
-        // if (theWinner) handleSetWinner([...winnerList, theWinner.winner]);
+        const theWinner = calculateWinner(squares, tableSize, i);
+        if (theWinner) {
+            setWinner(theWinner);
+            handleSetWinner([...winnerList, theWinner.winner]);
+        }
 
         setHistory(newHistory.concat([{ squares: squares }]));
         setStepNumber(newHistory.length);
@@ -87,9 +92,12 @@ const Caro = () => {
     const startGameNow = () => {
         setHistory(initialHistory);
         setStepNumber(0);
+        setWinner(null);
         setCurrent(-1);
         setRound((prev) => prev + 1);
         setTurn(round % 2 === 0 ? "X" : "O");
+        setGameCountDown(0);
+
         setPlayer1CountDown(600);
         setPlayer2CountDown(600);
         clearTimeCountDown(gameCountDownRef);
@@ -98,6 +106,7 @@ const Caro = () => {
         setHistory(initialHistory);
         setStepNumber(0);
         setCurrent(-1);
+        setWinner(null);
         setRound(1);
         setTurn("X");
         setWinnerList([]);
@@ -124,6 +133,7 @@ const Caro = () => {
                     gameCountDown={gameCountDown}
                 />
             </div>
+            {/* <button onClick={() => setWinnerList((prev) => [...prev, "X"])}>click</button> */}
             <div className="flex-col bigPhone:flex-row items-center gap-5  bigPhone:items-start flex justify-center w-full">
                 <UserBox
                     time={player1CountDown}
@@ -138,6 +148,7 @@ const Caro = () => {
                     onClick={(i: number) => (winnerList.length === round ? {} : handleClick(i))}
                     current={current}
                     tableSize={tableSize}
+                    winner={winner}
                 />
                 <UserBox
                     time={player2CountDown}

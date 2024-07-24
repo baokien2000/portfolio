@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
 import { SquareType } from "../caro";
-import calculateWinner from "./calculateWinner";
 import Square from "./square";
-
+import { motion,  } from "framer-motion";
 interface BoardProps {
     squares: SquareType[];
     onClick: (i: number) => void;
     current: number;
     tableSize: number;
+    winner: { winner: SquareType; line: number[] } | null;
 }
-export default function Board({ tableSize, current, onClick, squares }: BoardProps) {
-    const winner = calculateWinner(squares, tableSize);
+export default function Board({ tableSize, current, onClick, squares, winner }: BoardProps) {
+    // const winner = calculateWinner(squares, tableSize);
     return (
-        <div
-            className={`grid grid-cols-${tableSize} gap-0.5`}
+        <motion.div
+            initial={{ opacity: 0, }}
+            whileInView={{ opacity: 1 }}
+            transition={{
+                duration: 1,
+                delay: 1,
+            }}
+            viewport={{
+                once: true,
+                
+            }}
+            className={`grid grid-cols-${tableSize} gap-[1px]`}
             style={{
                 gridTemplateColumns: `repeat(${tableSize}, 1fr)`,
             }}
@@ -31,6 +41,6 @@ export default function Board({ tableSize, current, onClick, squares }: BoardPro
                     />
                 );
             })}
-        </div>
+        </motion.div>
     );
 }

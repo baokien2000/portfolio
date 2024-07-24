@@ -1,6 +1,7 @@
 import React from "react";
 import { SquareType } from "../caro";
-
+import { cn } from "@/libs/cn";
+import { motion } from "framer-motion";
 interface SquareProps {
     value: SquareType;
     onClick: () => void;
@@ -10,19 +11,24 @@ interface SquareProps {
     disabled: boolean;
 }
 export default function Square({ value, onClick, current, index, isWinnerMove, disabled }: SquareProps) {
-    let currentMoveColor = value === "X" ? (current === index ? `bg-red-600` : `bg-red-500`) : current === index ? `bg-blue-600` : `bg-blue-500`;
-    currentMoveColor = isWinnerMove ? "bg-main-gradient" : currentMoveColor;
     return (
-        <button
-            className={
-                " text-transparent bg-clip-text rounded leading-[1.2] border-[1.5px] border-[white]/50 font-bold  bigPhone:text-[22px] size-6 bigPhone:size-7 outline-none " +
-                currentMoveColor
-            }
+        <motion.button
+            className={cn(
+                "  leading-[1.2] rounded-sm border-[1.5px] border-[white]/50 font-bold  bigPhone:text-[22px] size-6 bigPhone:size-7 outline-none ",
+                {
+                    "text-red-500": value === "X",
+                    "text-blue-500": value === "O",
+                    "text-red-600": value === "X" && current === index,
+                    "text-blue-600": value === "O" && current === index,
+
+                    "bg-main-gradient !text-transparent bg-clip-text": isWinnerMove,
+                }
+            )}
             disabled={disabled}
             onClick={onClick}
             // style={{ backgroundColor: currentMoveColor }}
         >
-            {value}
-        </button>
+            <span>{value}</span>
+        </motion.button>
     );
 }
