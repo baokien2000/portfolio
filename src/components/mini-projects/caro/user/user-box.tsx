@@ -5,6 +5,8 @@ import dayjs from "dayjs";
 import { numberToTime } from "@/utils/format";
 import { motion, useInView } from "framer-motion";
 import { animate } from "@tsparticles/engine";
+import UserTime from "./user-time";
+import { SquareType } from "../caro";
 interface UserBoxProps {
     className?: string;
     ltr?: boolean;
@@ -12,17 +14,22 @@ interface UserBoxProps {
     name: string;
     won: number;
     disable: boolean;
-    time: number;
+    round: number;
+    turn: "X" | "O";
+    winnerList: SquareType[];
+    user: "X" | "O";
+    stepNumber: number;
+    handleSetWinner: (winner: SquareType[]) => void;
 }
 const motionAnimationOptions = {
     scale: [1, 1.5, 1],
     rotate: [0, 180, 360],
 };
 
-const UserBox = ({ className, ltr = false, imagePath, name, won, disable, time }: UserBoxProps) => {
+const UserBox = ({ handleSetWinner,stepNumber,className, user, ltr = false, imagePath, name, won, disable, turn, round, winnerList }: UserBoxProps) => {
     const ref = useRef(null);
     const isInView = useInView(ref);
-    console.log("inView", isInView);
+    console.log("inView", turn, user);
     return (
         <motion.div
             ref={ref}
@@ -41,14 +48,13 @@ const UserBox = ({ className, ltr = false, imagePath, name, won, disable, time }
             className={cn("flex gap-3 ", ltr ? " flex-row" : " flex-row-reverse")}
         >
             <div className={cn("size-20 relative border-2 rounded", ltr ? "border-red-500" : "border-blue-500")}>
-                <Image src={imagePath} alt="avatar-player" fill sizes="100px" />
+                <Image  src={imagePath} alt="avatar-player" fill sizes="100px" />
             </div>
             <div className={"flex flex-col  gap-1 leading-[1.2] " + (ltr ? " items-start" : " items-end")}>
                 <p className="text-xl">{name}</p>
                 <p className={cn("text-sm min-w-[90px] flex gap-1", ltr ? "text-left flex-row" : "text-right flex-row-reverse")}>
-                    {" "}
                     <span>Time</span> <span>:</span>
-                    <span>{numberToTime(time)}</span>{" "}
+                    <UserTime user={user} handleSetWinner={handleSetWinner} stepNumber={stepNumber} winnerList={winnerList} currentTurn={turn === user} round={round} />
                 </p>
                 <div className="flex gap-1 mt-1">
                     <motion.div

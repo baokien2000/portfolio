@@ -17,35 +17,11 @@ const Caro = () => {
     const [round, setRound] = useState(1);
     const [stepNumber, setStepNumber] = useState(0);
     const [current, setCurrent] = useState(-1);
+    const [player1, setPlayer1] = useState("Purin");
+    const [player2, setPlayer2] = useState("Evee");
 
-    const gameCountDownRef = useRef<NodeJS.Timeout | null>(null); // Sử dụng để lưu trữ ID của interval
-    const player1CountDownRef = useRef<NodeJS.Timeout | null>(null); // Sử dụng để lưu trữ ID của interval
-    const player2CountDownRef = useRef<NodeJS.Timeout | null>(null); // Sử dụng để lưu trữ ID của interval
-
-    const [gameCountDown, setGameCountDown] = useState(0);
-    const [player1CountDown, setPlayer1CountDown] = useState(600);
-    const [player2CountDown, setPlayer2CountDown] = useState(600);
-
-    const clearTimeCountDown = (timeRef: React.MutableRefObject<NodeJS.Timeout | null>) => {
-        if (!timeRef.current) return;
-        clearInterval(timeRef.current);
-        timeRef.current = null; // Đặt lại ref sau khi clear
-    };
     const handleSetWinner = (newWinner: SquareType[]) => {
         setWinnerList(newWinner);
-
-        const isGameOver = newWinner.filter((i) => i === "O").length >= 3 || newWinner.filter((i) => i === "X").length >= 3;
-        if (!isGameOver) {
-            setGameCountDown(30);
-            gameCountDownRef.current = setInterval(() => {
-                setGameCountDown((prev) => {
-                    if (prev - 1 === 0) startGameNow();
-                    return prev - 1;
-                });
-            }, 1000);
-        }
-        clearTimeCountDown(player1CountDownRef);
-        clearTimeCountDown(player2CountDownRef);
     };
 
     const handleClick = (i: number) => {
@@ -53,27 +29,8 @@ const Caro = () => {
         const current = newHistory[newHistory.length - 1];
         const squares = current.squares.slice();
 
-        if (squares[i]) {
-            return;
-        }
+        if (squares[i]) return;
 
-        if (turn === "X") {
-            clearTimeCountDown(player1CountDownRef);
-            // player2CountDownRef.current = setInterval(() => {
-            //     setPlayer2CountDown((prev) => {
-            //         if (prev - 0.25 === 0) handleSetWinner([...winnerList, "X"]);
-            //         return prev - 0.25;
-            //     });
-            // }, 250);
-        } else {
-            clearTimeCountDown(player2CountDownRef);
-            // player1CountDownRef.current = setInterval(() => {
-            //     setPlayer1CountDown((prev) => {
-            //         if (prev - 0.25 === 0) handleSetWinner([...winnerList, "O"]);
-            //         return prev - 0.25;
-            //     });
-            // }, 250);
-        }
         squares[i] = turn;
         const theWinner = calculateWinner(squares, tableSize, i);
         if (theWinner) {
@@ -86,7 +43,10 @@ const Caro = () => {
         setCurrent(i);
         setTurn(turn === "X" ? "O" : "X");
         if (squares.filter((i) => i === null).length === 0) {
-            handleSetWinner([...winnerList, player1CountDown > player2CountDown ? "X" : "O"]);
+            const playerXTime = parseInt((document.getElementById("caro-time-player-X") as HTMLInputElement).value || "0");
+            const playerOTime = parseInt((document.getElementById("caro-time-player-O") as HTMLInputElement).value || "0");
+            const winner: SquareType[] = playerXTime === playerOTime ? ["O", "X"] : playerXTime > playerOTime ? ["X"] : ["O"];
+            handleSetWinner([...winnerList, ...winner]);
         }
     };
     const startGameNow = () => {
@@ -96,11 +56,6 @@ const Caro = () => {
         setCurrent(-1);
         setRound((prev) => prev + 1);
         setTurn(round % 2 === 0 ? "X" : "O");
-        setGameCountDown(0);
-
-        setPlayer1CountDown(600);
-        setPlayer2CountDown(600);
-        clearTimeCountDown(gameCountDownRef);
     };
     const handlePlayAgain = () => {
         setHistory(initialHistory);
@@ -112,36 +67,37 @@ const Caro = () => {
         setWinnerList([]);
     };
 
-    useEffect(() => {
-        return () => {
-            if (gameCountDownRef.current) clearInterval(gameCountDownRef.current);
-            if (player1CountDownRef.current) clearInterval(player1CountDownRef.current);
-            if (player2CountDownRef.current) clearInterval(player2CountDownRef.current);
-        };
-    }, []);
     return (
         <div className="w-full flex items-center flex-col gap-5">
             <div className="flex flex-col items-center">
                 <h2 className="text-2xl">Round {round}</h2>
                 <CaroGameStatus
-                    player1Name="BaoKien"
-                    player2Name="Player2"
+                    player1Name={player1}
+                    player2Name={player2}
+                    round={round}
                     startGameNow={startGameNow}
                     winnerList={winnerList}
                     turn={turn}
                     handlePlayAgain={handlePlayAgain}
-                    gameCountDown={gameCountDown}
+                    // gameCountDown={gameCountDown}
                 />
+                {/* <button onClick={() => setWinnerList(["X", "X", "O", "O"])}>click</button> */}
+                {/* <button onClick={() => setWinnerList((prev) => [...prev, "O", "X"])}>click 2</button> */}
             </div>
             {/* <button onClick={() => setWinnerList((prev) => [...prev, "X"])}>click</button> */}
             <div className="flex-col bigPhone:flex-row items-center gap-5  bigPhone:items-start flex justify-center w-full">
                 <UserBox
-                    time={player1CountDown}
+                    user="X"
+                    round={round}
+                    winnerList={winnerList}
+                    turn={turn}
+                    stepNumber={stepNumber}
+                    handleSetWinner={handleSetWinner}
                     imagePath="/assets/images/mini-projects/caro/purin.png"
-                    name="Bao Kien"
+                    name={player1}
                     won={winnerList.filter((i) => i === "X").length}
                     ltr={true}
-                    disable={winnerList[round - 1] ? winnerList[round - 1] === "O" : turn === "O"}
+                    disable={winnerList.length === 6 ? false : winnerList[round - 1] ? winnerList[round - 1] === "O" : turn === "O"}
                 />
                 <Board
                     squares={history[stepNumber].squares}
@@ -151,11 +107,16 @@ const Caro = () => {
                     winner={winner}
                 />
                 <UserBox
-                    time={player2CountDown}
+                    user="O"
+                    round={round}
+                    winnerList={winnerList}
+                    turn={turn}
+                    handleSetWinner={handleSetWinner}
+                    stepNumber={stepNumber}
                     imagePath="/assets/images/mini-projects/caro/evee.png"
-                    name="Player 2"
+                    name={player2}
                     won={winnerList.filter((i) => i === "O").length}
-                    disable={winnerList[round - 1] ? winnerList[round - 1] === "X" : turn === "X"}
+                    disable={winnerList.length === 6 ? false : winnerList[round - 1] ? winnerList[round - 1] === "X" : turn === "X"}
                 />
             </div>
         </div>
