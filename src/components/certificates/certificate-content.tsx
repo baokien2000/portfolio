@@ -24,10 +24,9 @@ const CertificateContent = () => {
         <motion.div
             viewport={{ once: true }}
             variants={{
-                hidden: { opacity: 1, scale: 0 },
+                hidden: { opacity: 1 },
                 visible: {
                     opacity: 1,
-                    scale: 1,
                     transition: {
                         delayChildren: 0.3,
                         staggerChildren: 0.5,

@@ -33,10 +33,9 @@ const MiniProjectsContainer = () => {
             <motion.div
                 viewport={{ once: true }}
                 variants={{
-                    hidden: { opacity: 1, scale: 0 },
+                    hidden: { opacity: 1 },
                     visible: {
                         opacity: 1,
-                        scale: 1,
                         transition: {
                             delayChildren: 0.3,
                             staggerChildren: 0.2,
@@ -66,16 +65,16 @@ const projectList = [
         className: "pointer-events-none cursor-not-allowed",
     },
     {
-        name: "Weather App",
-        href: "/mini-projects/weather-app",
-        imagePath: "/assets/images/mini-projects/construction.png",
-        className: "pointer-events-none cursor-not-allowed",
+        name: "Caro App",
+        href: "/mini-projects/caro-app",
+        imagePath: "/assets/images/mini-projects/caro-app.png",
+        className: "gradient-border ",
     },
     {
-        name: "Weather App",
-        href: "/mini-projects/weather-app",
-        imagePath: "/assets/images/mini-projects/construction.png",
-        className: "pointer-events-none cursor-not-allowed",
+        name: "Todo App",
+        href: "/mini-projects/todo-app",
+        imagePath: "/assets/images/mini-projects/todo-app.png",
+        className: "gradient-border ",
     },
     {
         name: "Digital Clock",
