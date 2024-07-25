@@ -76,14 +76,15 @@ const StartRoom = ({ onStart, initialData }: { onStart: (data: ICaroData) => voi
                 }}
                 className="flex flex-col items-center"
             >
-                <button
-                    onClick={handleStart}
-                    className={cn(
-                        orbitron.className,
-                        "bg-white hover:bg-main-gradient text-transparent bg-clip-text text-4xl  font-bold tracking-widest"
-                    )}
-                >
-                    Start
+                <button onClick={handleStart}>
+                    <p
+                        className={cn(
+                            orbitron.className,
+                            "bg-white hover:bg-main-gradient text-transparent bg-clip-text text-4xl  font-bold tracking-widest"
+                        )}
+                    >
+                        Start
+                    </p>
                 </button>
             </motion.div>
             <div className="flex-col  items-center gap-5 sm:gap-10 flex justify-center w-full">
