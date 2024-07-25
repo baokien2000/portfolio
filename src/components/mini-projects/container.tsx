@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const MiniProjectsContainer = () => {
     const router = useRouter();
     return (
-        <div id="about" className="flex gap-8 sm:gap-5 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
+        <div id="mini-project" className="flex gap-8 sm:gap-5 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <div>
                 <motion.h1
                     viewport={{ once: true }}
@@ -19,7 +19,6 @@ const MiniProjectsContainer = () => {
                             duration: 1,
                         },
                     }}
-                    id="experience"
                     className="text-[32px] sm:text-[40px text-left font-bold"
                 >
                     Mini Projects
