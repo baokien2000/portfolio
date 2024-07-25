@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const MiniProjectsContainer = () => {
     const router = useRouter();
     return (
-        <div id="about" className="flex gap-8 sm:gap-5 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
+        <div id="mini-project" className="flex gap-8 sm:gap-5 flex-col min-h-[100svh]  h-full w-full p-4 md:py-10 md:px-10 mediumLaptop:px-20">
             <div>
                 <motion.h1
                     viewport={{ once: true }}
@@ -19,7 +19,6 @@ const MiniProjectsContainer = () => {
                             duration: 1,
                         },
                     }}
-                    id="experience"
                     className="text-[32px] sm:text-[40px text-left font-bold"
                 >
                     Mini Projects
@@ -33,10 +32,9 @@ const MiniProjectsContainer = () => {
             <motion.div
                 viewport={{ once: true }}
                 variants={{
-                    hidden: { opacity: 1, scale: 0 },
+                    hidden: { opacity: 1 },
                     visible: {
                         opacity: 1,
-                        scale: 1,
                         transition: {
                             delayChildren: 0.3,
                             staggerChildren: 0.2,
@@ -66,16 +64,16 @@ const projectList = [
         className: "pointer-events-none cursor-not-allowed",
     },
     {
-        name: "Weather App",
-        href: "/mini-projects/weather-app",
-        imagePath: "/assets/images/mini-projects/construction.png",
-        className: "pointer-events-none cursor-not-allowed",
+        name: "Caro App",
+        href: "/mini-projects/caro-app",
+        imagePath: "/assets/images/mini-projects/caro-app.png",
+        className: "gradient-border ",
     },
     {
-        name: "Weather App",
-        href: "/mini-projects/weather-app",
-        imagePath: "/assets/images/mini-projects/construction.png",
-        className: "pointer-events-none cursor-not-allowed",
+        name: "Todo App",
+        href: "/mini-projects/todo-app",
+        imagePath: "/assets/images/mini-projects/todo-app.png",
+        className: "gradient-border ",
     },
     {
         name: "Digital Clock",

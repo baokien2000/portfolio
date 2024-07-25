@@ -1,0 +1,19 @@
+/* Movie Detail scroll bar */
+    /* custom Scroll bar */
+
+    .CustomScrollBar::-webkit-scrollbar {
+        width: 4px !important;
+    }
+  
+    .CustomScrollBar::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 0px;
+
+        
+    }
+    .CustomScrollBar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  
+  
+  
