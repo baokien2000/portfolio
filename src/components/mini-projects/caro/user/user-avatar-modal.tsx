@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useState } from "react";
 import { AvatarList, ICaroPlayer } from "../interface";
 import debounce from "lodash.debounce";
-
+import "./style.css";
 export default function UserAvatarModal({
     imageName,
     user,
@@ -43,7 +43,7 @@ export default function UserAvatarModal({
                     <div className="flex min-h-full items-center justify-center p-4">
                         <DialogPanel
                             transition
-                            className="w-full flex bigPhone:flex-row  flex-col gap-5 md:max-w-[620px] rounded-xl bg-white/5 p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+                            className="w-full flex bigPhone:flex-row  flex-col gap-5 md:max-w-[620px] rounded-xl bg-white/5 p-6 backdropBlur backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
                         >
                             <div
                                 onClick={open}
