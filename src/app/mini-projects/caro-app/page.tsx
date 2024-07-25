@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 export default function CaroApp() {
     return (
-        <main className=" z-[1] relative text-white  min-h-screen">
+        <main className="z-[1] relative text-white  min-h-screen">
             <CaroContainer />
         </main>
     );
