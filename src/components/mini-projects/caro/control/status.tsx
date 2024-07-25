@@ -10,11 +10,13 @@ interface CaroGameStatusProps {
     startGameNow: () => void;
     player1Name: string;
     player2Name: string;
+    mode: number;
 }
-const CaroGameStatus = ({ winnerList, round, turn, handlePlayAgain, startGameNow, player1Name, player2Name }: CaroGameStatusProps) => {
+const CaroGameStatus = ({ mode, winnerList, round, turn, handlePlayAgain, startGameNow, player1Name, player2Name }: CaroGameStatusProps) => {
     const [gameCountDown, setGameCountDown] = useState(0);
     const gameCountDownRef = useRef<NodeJS.Timeout | null>(null);
-    const isGameOver = winnerList.filter((i) => i === "O").length >= 3 || winnerList.filter((i) => i === "X").length >= 3;
+    const winRound = mode === 1 ? 1 : mode === 3 ? 2 : 3;
+    const isGameOver = winnerList.filter((i) => i === "O").length >= winRound || winnerList.filter((i) => i === "X").length >= winRound;
     useEffect(() => {
         if (isGameOver) return;
 
@@ -42,7 +44,7 @@ const CaroGameStatus = ({ winnerList, round, turn, handlePlayAgain, startGameNow
     const player1Win = winnerList.filter((i) => i === "X").length;
     const player2Win = winnerList.filter((i) => i === "O").length;
     // Game End -  X | O Win
-    if (player1Win === 3 || player2Win === 3) {
+    if (player1Win === winRound || player2Win === winRound) {
         return (
             <div className="flex gap-2">
                 <p>{player1Win === player2Win ? `Draw - ` : `${player1Win > player2Win ? player1Name : player2Name} win - `} </p>

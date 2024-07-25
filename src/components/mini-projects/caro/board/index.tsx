@@ -5,11 +5,11 @@ import { motion,  } from "framer-motion";
 interface BoardProps {
     squares: SquareType[];
     onClick: (i: number) => void;
-    current: number;
+    currentIndex: number;
     tableSize: number;
     winner: { winner: SquareType; line: number[] } | null;
 }
-export default function Board({ tableSize, current, onClick, squares, winner }: BoardProps) {
+export default function Board({ tableSize, currentIndex, onClick, squares, winner }: BoardProps) {
     // const winner = calculateWinner(squares, tableSize);
     return (
         <motion.div
@@ -31,11 +31,12 @@ export default function Board({ tableSize, current, onClick, squares, winner }: 
             {squares.map((_, i: number) => {
                 return (
                     <Square
+                    tableSize={tableSize}
                         key={i}
                         value={squares[i]}
                         onClick={() => onClick(i)}
                         disabled={winner || squares[i] ? true : false}
-                        current={current}
+                        currentIndex={currentIndex}
                         index={i}
                         isWinnerMove={winner ? winner.line.includes(i) : false}
                     />

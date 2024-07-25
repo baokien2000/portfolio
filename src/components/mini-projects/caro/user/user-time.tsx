@@ -5,26 +5,28 @@ import { SquareType } from "../caro";
 const UserTime = ({
     round,
     stepNumber,
+    initialTime,
     winnerList,
     currentTurn,
     handleSetWinner,
     user,
 }: {
     stepNumber: number;
-    round: number;
+        round: number;
+        initialTime?: number;
     winnerList: SquareType[];
     currentTurn: boolean;
-    handleSetWinner: (winner: SquareType[]) => void;
+    handleSetWinner?: (winner: SquareType[]) => void;
     user: "X" | "O";
 }) => {
-    const [time, setTime] = React.useState(600);
+    const [time, setTime] = React.useState(initialTime ??600);
     const timeRef = useRef<NodeJS.Timeout | null>(null); // Sử dụng để lưu trữ ID của interval
     useEffect(() => {
         if (currentTurn && round > winnerList.length && stepNumber > 0) {
             timeRef.current = setInterval(() => {
                 setTime((prev) => {
                     if (prev - 0.25 === 0) {
-                        handleSetWinner([...winnerList, user === "X" ? "O" : "X"]);
+                        handleSetWinner && handleSetWinner([...winnerList, user === "X" ? "O" : "X"]);
                         clearInterval(timeRef.current!);
                         timeRef.current = null;
                     }
@@ -32,13 +34,14 @@ const UserTime = ({
                 });
             }, 250);
         } else {
-            clearInterval(timeRef.current!);
+            if (!timeRef.current) return;
+            clearInterval(timeRef.current);
             timeRef.current = null;
         }
     }, [round, currentTurn, winnerList]);
     useEffect(() => {
-        setTime(10);
-    }, [round]);
+        setTime(initialTime ??600);
+    }, [round,initialTime]);
 
     return (
         <>

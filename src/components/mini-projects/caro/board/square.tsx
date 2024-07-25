@@ -5,28 +5,29 @@ import { motion } from "framer-motion";
 interface SquareProps {
     value: SquareType;
     onClick: () => void;
-    current: number;
+    currentIndex: number;
     index: number;
     isWinnerMove: boolean;
     disabled: boolean;
+    tableSize: number;
 }
-export default function Square({ value, onClick, current, index, isWinnerMove, disabled }: SquareProps) {
+export default function Square({ value, tableSize, onClick, currentIndex, index, isWinnerMove, disabled }: SquareProps) {
     return (
         <motion.button
-            className={cn(
-                "  leading-[1.2] rounded-sm border-[1.5px] border-[white]/50 font-bold  bigPhone:text-[22px] size-6 bigPhone:size-7 outline-none ",
-                {
-                    "text-red-500": value === "X",
-                    "text-blue-500": value === "O",
-                    "text-red-600": value === "X" && current === index,
-                    "text-blue-600": value === "O" && current === index,
+            className={cn("  leading-[1.2] justify-center items-center flex rounded-sm border-[1.5px] border-[white]/50 font-bold outline-none ", {
+                "text-red-500": value === "X",
+                "text-blue-500": value === "O",
+                "text-red-600": value === "X" && currentIndex === index,
+                "text-blue-600": value === "O" && currentIndex === index,
 
-                    "bg-main-gradient !text-transparent bg-clip-text": isWinnerMove,
-                }
-            )}
+                "bg-main-gradient !text-transparent bg-clip-text": isWinnerMove,
+                "text-xs size-4  phone:text-sm phone:size-5 bigPhone:text-lg bigPhone:size-6 tablet:text-[22px] tablet:size-7": tableSize === 16,
+                "text-sm size-5  phone:text-base phone:size-6 bigPhone:size-7 bigPhone:text-[22px]": tableSize === 12,
+                "text-base size-6  phone:text-[22px] phone:size-7 ": tableSize === 10,
+            })}
             disabled={disabled}
             onClick={onClick}
-            // style={{ backgroundColor: currentMoveColor }}
+            // style={{ backgroundColor: currentIndexMoveColor }}
         >
             <span>{value}</span>
         </motion.button>
