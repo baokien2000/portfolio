@@ -10,9 +10,11 @@ import {
     ISelectedSettings,
     ISettingVariableItem,
     levelList,
+    LevelType,
     modeList,
     playerList,
     playerStartList,
+    PlayerType,
     sizeList,
     timeList,
 } from "./interface";
@@ -38,6 +40,30 @@ const StartRoom = ({ onStart, initialData }: { onStart: (data: ICaroData) => voi
     });
     console.log("selectedSettings", selectedSettings);
     const setSelectedSetting = (key: keyof ISelectedSettings, value: ISettingVariableItem) => {
+        if (key === "player") {
+            setPlayer2((prev) => ({
+                ...prev,
+                name:
+                    value.value === PlayerType.PVP
+                        ? "Player 2"
+                        : `Zygarde ${
+                              selectedSettings.level.value === LevelType.MEDIUM ? 50 : selectedSettings.level.value === LevelType.EASY ? 10 : 100
+                          }`,
+                image:
+                    value.value === PlayerType.PVP
+                        ? "question-mark-v3"
+                        : `Zygarde_${
+                              selectedSettings.level.value === LevelType.MEDIUM ? 50 : selectedSettings.level.value === LevelType.EASY ? 10 : 100
+                          }`,
+            }));
+        }
+        if (key === "level") {
+            setPlayer2((prev) => ({
+                ...prev,
+                name: value.value === LevelType.MEDIUM ? "Zygarde 50" : value.value === LevelType.EASY ? "Zygarde 10" : "Zygarde 100",
+                image: `Zygarde_${value.value === LevelType.MEDIUM ? 50 : value.value === LevelType.EASY ? 10 : 100}`,
+            }));
+        }
         setSelectedSettings((prevSettings) => ({
             ...prevSettings,
             [key]: value,
@@ -91,6 +117,7 @@ const StartRoom = ({ onStart, initialData }: { onStart: (data: ICaroData) => voi
                 <StartUserContainer
                     player1={player1}
                     player2={player2}
+                    player={selectedSettings.player.value}
                     setPlayer1={setPlayer1}
                     setPlayer2={setPlayer2}
                     time={selectedSettings.time.value}

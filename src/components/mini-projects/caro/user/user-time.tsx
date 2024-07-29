@@ -46,7 +46,7 @@ const UserTime = ({
     return (
         <>
             <span>{numberToTime(time)}</span>
-            <input id={"caro-time-player-" + user} type="number" className="hidden" value={time} />
+            <input id={"caro-time-player-" + user} type="number" readOnly className="hidden" value={time} />
         </>
     );
 };

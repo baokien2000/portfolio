@@ -1,15 +1,16 @@
 import React from "react";
 import UserBox from "../user/user-box";
-import { ICaroPlayer } from "../interface";
+import { ICaroPlayer, PlayerType } from "../interface";
 interface StartUserContainerProps {
     time: number;
     mode: number;
+    player: number;
     player1: ICaroPlayer;
     player2: ICaroPlayer;
     setPlayer1: React.Dispatch<React.SetStateAction<ICaroPlayer>>;
     setPlayer2: React.Dispatch<React.SetStateAction<ICaroPlayer>>;
 }
-const StartUserContainer = ({ time, mode, player1, player2, setPlayer1, setPlayer2 }: StartUserContainerProps) => {
+const StartUserContainer = ({ time, mode, player, player1, player2, setPlayer1, setPlayer2 }: StartUserContainerProps) => {
     return (
         <div className="flex sm:flex-row flex-col gap-3 sm:gap-5 ">
             <UserBox
@@ -31,7 +32,7 @@ const StartUserContainer = ({ time, mode, player1, player2, setPlayer1, setPlaye
                 disable={false}
             />
             <UserBox
-                editable
+                editable={player === PlayerType.PVP}
                 user="O"
                 round={1}
                 className="min-w-[220px]"

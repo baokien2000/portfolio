@@ -48,8 +48,8 @@ const CaroGameStatus = ({ mode, winnerList, round, turn, handlePlayAgain, startG
         return (
             <div className="flex gap-2">
                 <p>{player1Win === player2Win ? `Draw - ` : `${player1Win > player2Win ? player1Name : player2Name} win - `} </p>
-                <button onClick={handlePlayAgain} className="bg-main-gradient font-bold  text-transparent bg-clip-text">
-                    Play again
+                <button onClick={handlePlayAgain}>
+                    <p className="bg-main-gradient font-bold  text-transparent bg-clip-text">Play again</p>
                 </button>
             </div>
         );
@@ -63,8 +63,8 @@ const CaroGameStatus = ({ mode, winnerList, round, turn, handlePlayAgain, startG
             <p>
                 Round 2 will start in <b className="inline-block min-w-[32px]">{gameCountDown}s</b> -
             </p>
-            <button onClick={handleStartNow} className="bg-main-gradient  text-transparent bg-clip-text font-bold">
-                Start Now
+            <button onClick={handleStartNow}>
+                <p className="bg-main-gradient  text-transparent bg-clip-text font-bold">Start Now</p>
             </button>
         </div>
     );

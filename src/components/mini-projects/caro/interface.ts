@@ -58,16 +58,25 @@ export const sizeList = [
 ]
 export const playerList = [
     { id: "PVP", name: "Player",value:0 },
-    { id: "PVE", name: "AI",value:1 },
+    { id: "PVE", name: "Computer",value:1 },
 ]
+export enum PlayerType { 
+    PVP=0,
+    PVE=1
+}
 export const playerStartList = [
     { id: "P1", name: "X",value:0  },
     { id: "P2", name: "O" ,value:1},
 ]
 export const levelList = [
-    { id: "EASY", name: "Easy",value:1 },
+    { id: "EASY", name: "Easy",value:1.5 },
     { id: "MEDIUM", name: "Medium",value:2 },
-    { id: "HARD", name: "Hard",value:3 },
+    { id: "HARD", name: "Hard",value:2.5 },
 ]
+export enum LevelType { 
+    EASY=1.5,
+    MEDIUM=2,
+    HARD=2.5
+}
 
 export const AvatarList = ["Butterfree","Digda","Eevee","Fushigidane","Gangar","Hitokage","Jirachi","Kabigon","Karakara","Koduck","Marumine","Metamon","Mew","Nazonokusa","Nyorozo","Purin","Rokon","Sand","Tamazarashi","Zenigame"    ]

@@ -75,7 +75,7 @@ const GameSetting: React.FC<GameSettingProps> = ({ selectedSettings, setSelected
                     value={selectedSettings.player}
                     onChange={(value: ISettingVariableItem) => setSelectedSetting("player", value)}
                     options={playerList}
-                    disabled={true}
+                    // disabled={true}
                 />
             </div>
             <div className="flex flex-col gap-2">

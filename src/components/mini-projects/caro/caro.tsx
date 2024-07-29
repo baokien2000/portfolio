@@ -7,15 +7,16 @@ import { ICaroData } from "./interface";
 import { motion } from "framer-motion";
 import { cn } from "@/libs/cn";
 import { Orbitron } from "next/font/google";
+import { minimax } from "./AI";
 export type SquareType = "X" | "O" | null;
 export type HistoryType = { squares: SquareType[] }[];
 const orbitron = Orbitron({ subsets: ["latin"] });
 
 const Caro = ({ initialData, setIsGameStart }: { initialData: ICaroData; setIsGameStart: React.Dispatch<React.SetStateAction<boolean>> }) => {
     const tableSize = initialData.size ?? 16;
-    const initialHistory: HistoryType = [{ squares: Array(tableSize * tableSize).fill(null) }];
+    const initialSquares: SquareType[] = Array(tableSize * tableSize).fill(null);
 
-    const [history, setHistory] = useState<HistoryType>(initialHistory);
+    const [squares2, setSquares2] = useState<SquareType[]>(initialSquares);
     const [turn, setTurn] = useState<"X" | "O">(initialData.startFirst === 0 ? "X" : "O");
     const [winnerList, setWinnerList] = useState<SquareType[]>([]);
     const [winner, setWinner] = useState<{ winner: SquareType; line: number[] } | null>(null);
@@ -26,25 +27,16 @@ const Caro = ({ initialData, setIsGameStart }: { initialData: ICaroData; setIsGa
     const handleSetWinner = (newWinner: SquareType[]) => {
         setWinnerList(newWinner);
     };
-
-    const handleClick = (i: number) => {
-        const newHistory = history.slice(0, stepNumber + 1);
-        const current = newHistory[newHistory.length - 1];
-        const squares = current.squares.slice();
-
-        if (squares[i]) return;
-
-        squares[i] = turn;
-
-        const theWinner = calculateWinner(squares, tableSize, i);
+    const checkWinner = (squares: SquareType[], index: number) => {
+        const theWinner = calculateWinner(squares, tableSize, index);
         if (theWinner) {
             setWinner(theWinner);
             handleSetWinner([...winnerList, theWinner.winner]);
         }
 
-        setHistory(newHistory.concat([{ squares: squares }]));
-        setStepNumber(newHistory.length);
-        setCurrentIndex(i);
+        setSquares2(squares);
+        setStepNumber(squares.length);
+        setCurrentIndex(index);
         setTurn(turn === "X" ? "O" : "X");
 
         if (squares.filter((i) => i === null).length === 0) {
@@ -54,9 +46,15 @@ const Caro = ({ initialData, setIsGameStart }: { initialData: ICaroData; setIsGa
             handleSetWinner([...winnerList, ...winner]);
         }
     };
+    const handleClick = (i: number) => {
+        const newSquares = squares2.slice();
+        if (newSquares[i]) return;
+        newSquares[i] = turn;
+        checkWinner(newSquares, i);
+    };
 
     const startGameNow = () => {
-        setHistory(initialHistory);
+        setSquares2(initialSquares);
         setStepNumber(0);
         setWinner(null);
         setCurrentIndex(-1);
@@ -68,6 +66,52 @@ const Caro = ({ initialData, setIsGameStart }: { initialData: ICaroData; setIsGa
         setIsGameStart(false);
     };
 
+    // useEffect(() => {
+    //     console.log("initialData.player,turn", initialData.player, turn);
+    //     if (initialData.player === 1 && turn === "O") {
+    //         const newQuares = squares2.slice();
+    //         if (stepNumber === 0) {
+    //             const centerIndex = Math.floor(tableSize / 2) * tableSize + Math.floor(tableSize / 2);
+    //             newQuares[centerIndex] = "O";
+    //             setSquares2(newQuares);
+    //             setStepNumber(newQuares.length);
+    //             setCurrentIndex(centerIndex);
+    //             setTurn("X");
+    //             return;
+    //         }
+    //         const [, move] = minimax(newQuares.slice(), tableSize, false);
+    //         if (!move) return;
+    //         newQuares[move] = "O";
+
+    //         checkWinner(newQuares,move);
+
+    //     }
+    // }, [initialData.player, turn, round]);
+    useEffect(() => {
+        const delayExecution = setTimeout(() => {
+            console.log("initialData.player,turn", initialData.player, turn);
+            if (initialData.player === 1 && turn === "O" &&  winnerList.length !== round) {
+                const newQuares = squares2.slice();
+                if (stepNumber === 0) {
+                    const centerIndex = Math.floor(tableSize / 2) * tableSize + Math.floor(tableSize / 2);
+                    newQuares[centerIndex] = "O";
+                    setSquares2(newQuares);
+                    setStepNumber(newQuares.length);
+                    setCurrentIndex(centerIndex);
+                    setTurn("X");
+                    return;
+                }
+                console.log("level",initialData.level === 1.5 ? true : false);
+                const [, move] = minimax(newQuares.slice(), tableSize, initialData.level === 1.5 ? true : false);
+                if (!move) return;
+                newQuares[move] = "O";
+
+                checkWinner(newQuares, move);
+            }
+        }, (3 - initialData.level) *1000 ); // Delay 1 giây
+
+        return () => clearTimeout(delayExecution); // Clear timeout nếu component unmount
+    }, [initialData.player, turn, round]);
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -107,8 +151,8 @@ const Caro = ({ initialData, setIsGameStart }: { initialData: ICaroData; setIsGa
                     disable={winnerList.length === 6 ? false : winnerList[round - 1] ? winnerList[round - 1] === "O" : turn === "O"}
                 />
                 <Board
-                    squares={history[stepNumber].squares}
-                    onClick={(i: number) => (winnerList.length === round ? {} : handleClick(i))}
+                    squares={squares2}
+                    onClick={(i: number) => (winnerList.length === round || (initialData.player === 1 && turn === "O") ? {} : handleClick(i))}
                     currentIndex={currentIndex}
                     tableSize={tableSize}
                     winner={winner}
@@ -118,7 +162,6 @@ const Caro = ({ initialData, setIsGameStart }: { initialData: ICaroData; setIsGa
                     round={round}
                     winnerList={winnerList}
                     className="justify-start w-full smallLaptop:w-fit "
-
                     time={initialData.time}
                     mode={initialData.mode}
                     turn={turn}

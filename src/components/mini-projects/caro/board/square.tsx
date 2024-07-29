@@ -20,7 +20,6 @@ export default function Square({ value, tableSize, onClick, currentIndex, index,
                 "text-red-600": value === "X" && currentIndex === index,
                 "text-blue-600": value === "O" && currentIndex === index,
 
-                "bg-main-gradient !text-transparent bg-clip-text": isWinnerMove,
                 "text-xs size-4  phone:text-sm phone:size-5 bigPhone:text-lg bigPhone:size-6 tablet:text-[22px] tablet:size-7": tableSize === 16,
                 "text-sm size-5  phone:text-base phone:size-6 bigPhone:size-7 bigPhone:text-[22px]": tableSize === 12,
                 "text-base size-6  phone:text-[22px] phone:size-7 ": tableSize === 10,
@@ -29,7 +28,7 @@ export default function Square({ value, tableSize, onClick, currentIndex, index,
             onClick={onClick}
             // style={{ backgroundColor: currentIndexMoveColor }}
         >
-            <span>{value}</span>
+            <span className={cn({ "bg-main-gradient !text-transparent bg-clip-text": isWinnerMove })}>{value}</span>
         </motion.button>
     );
 }
