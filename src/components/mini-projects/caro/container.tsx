@@ -44,7 +44,7 @@ const CaroContainer = () => {
                             duration: 1,
                         },
                     }}
-                    id="experience"
+                    id="caro-app"
                     className="text-[32px] sm:text-[40px text-left font-bold"
                 >
                     Caro App

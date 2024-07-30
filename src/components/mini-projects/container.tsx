@@ -60,8 +60,8 @@ const projectList = [
     {
         name: "Weather App",
         href: "/mini-projects/weather-app",
-        imagePath: "/assets/images/mini-projects/construction.png",
-        className: "pointer-events-none cursor-not-allowed",
+        imagePath: "/assets/images/mini-projects/weather-app.png",
+        className: "gradient-border ",
     },
     {
         name: "Caro App",

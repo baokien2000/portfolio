@@ -21,7 +21,7 @@ const LiquidContainer = () => {
                             duration: 1,
                         },
                     }}
-                    id="experience"
+                    id="liquid-effect"
                     className="text-[32px] sm:text-[40px text-left font-bold"
                 >
                     Liquid Effect

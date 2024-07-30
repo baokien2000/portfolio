@@ -101,7 +101,7 @@ const projectList = [
         target: "_blank",
     },
     {
-        imagePath: "/assets/images/projects/mini_project.png",
+        imagePath: "/assets/images/projects/mini_project_v1.png",
         name: "Mini Project",
         description: "A few small projects I did while I was learning to code, built with Reactjs, CSS.",
         live: "/mini-projects",

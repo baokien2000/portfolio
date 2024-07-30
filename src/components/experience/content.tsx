@@ -23,7 +23,7 @@ const ExperienceContent = () => {
                     WORLD CONNECT INVESTMENT AND DEVELOPMENT TECHNOLOGY JSC
                 </motion.h3>
                 <motion.p className="text-sm " {...motionOptions}>
-                    <i> Full Stack Developer/May 2023 - Present</i>
+                    <i> Full Stack Developer/May 2023 - July 2024</i>
                 </motion.p>
                 <ul className={"list-disc list-inside mt-4 text-sm sm:text-base"}>
                     <motion.li {...motionOptions}>
