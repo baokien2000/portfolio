@@ -76,7 +76,7 @@ const About = () => {
                     </motion.p>
 
                     <motion.div {...motionOption} className="mt-3">
-                        <Link
+                        <a
                             href={"/assets/TANG-BAO-KIEN-WEB-DEVERLOPER-CV.pdf"}
                             download={"TANG-BAO-KIEN-WEB-DEVERLOPER-CV.pdf"}
                             target="_blank"
@@ -85,7 +85,7 @@ const About = () => {
                         >
                             <p className="bg-main-gradient text-transparent bg-clip-text font-medium sm:font-bold">Download my CV</p>
                             <DocumentDownload className="size-5 group-hover:animate-bounce" />
-                        </Link>
+                        </a>
                     </motion.div>
                 </div>
             </div>
