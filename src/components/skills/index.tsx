@@ -49,60 +49,20 @@ const Skills = () => {
 export default Skills;
 
 const skillList = [
-    {
-        title: "HTML5",
-        imagePath: "/assets/images/skills/html.png",
-    },
-    {
-        title: "CSS3",
-        imagePath: "/assets/images/skills/css3.png",
-    },
-    {
-        title: "JavaScript",
-        imagePath: "/assets/images/skills/js.png",
-    },
-    {
-        title: "ReactJS",
-        imagePath: "/assets/images/skills/react.png",
-    },
-    {
-        title: "NextJS",
-        imagePath: "/assets/images/skills/nextjs.png",
-    },
-    {
-        title: "NodeJS",
-        imagePath: "/assets/images/skills/nodejs.png",
-    },
-    {
-        title: "MongoDB",
-        imagePath: "/assets/images/skills/mongodb.png",
-    },
-    {
-        title: "ExpressJS",
-        imagePath: "/assets/images/skills/express.png",
-    },
-    {
-        title: "Git",
-        imagePath: "/assets/images/skills/git.png",
-    },
-    {
-        title: "TypeScript",
-        imagePath: "/assets/images/skills/ts.png",
-    },
-    {
-        title: "Tailwind CSS",
-        imagePath: "/assets/images/skills/tailwindcss.svg",
-    },
-    {
-        title: "Firebase",
-        imagePath: "/assets/images/skills/firebase.svg",
-    },
-    {
-        title: "Zustand",
-        imagePath: "/assets/images/skills/zustand.png",
-    },
-    {
-        title: "React Query",
-        imagePath: "/assets/images/skills/react-query.svg",
-    },
+    { title: "HTML5", imagePath: "/assets/images/skills/html.png" },
+    { title: "CSS3", imagePath: "/assets/images/skills/css3.png" },
+    { title: "JavaScript", imagePath: "/assets/images/skills/js.png" },
+    { title: "ReactJS", imagePath: "/assets/images/skills/react.png" },
+    { title: "NextJS", imagePath: "/assets/images/skills/nextjs.png" },
+    { title: "NodeJS", imagePath: "/assets/images/skills/nodejs.png" },
+    { title: "MongoDB", imagePath: "/assets/images/skills/mongodb.png" },
+    { title: "ExpressJS", imagePath: "/assets/images/skills/express.png" },
+    { title: "Git", imagePath: "/assets/images/skills/git.png" },
+    { title: "TypeScript", imagePath: "/assets/images/skills/ts.png" },
+    { title: "Tailwind CSS", imagePath: "/assets/images/skills/tailwindcss.svg" },
+    { title: "Firebase", imagePath: "/assets/images/skills/firebase.svg" },
+    { title: "Zustand", imagePath: "/assets/images/skills/zustand.png" },
+    { title: "React Query", imagePath: "/assets/images/skills/react-query.svg" },
+    { title: "NextUI", imagePath: "/assets/images/skills/nextui.png" },
+    { title: "Graphql", imagePath: "/assets/images/skills/graphql.svg" },
 ];

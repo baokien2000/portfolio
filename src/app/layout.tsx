@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import StarBackground from "@/components/background";
 import InitialLoadingSkeleton from "@/components/loading/initial-loading skeleton";
 import InitialLoading from "@/components/loading/initial-loading";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: {
@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={montserrat.className + " bg-black"}>
+            <body className={inter.className} style={inter.style}>
                 {children}
                 <Suspense fallback={<InitialLoadingSkeleton />}>
                     <InitialLoading />

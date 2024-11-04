@@ -21,7 +21,7 @@ const InitialLoading = () => {
             <motion.div
                 viewport={{ once: true }}
                 animate={{
-                    rotate: [0, 180, 360],
+                    // rotate: [0, 180, 360],
                     scale: [1, 0.5, 0],
                 }}
                 transition={{

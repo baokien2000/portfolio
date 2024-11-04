@@ -12,10 +12,10 @@ const SkillCard = ({ title, imagePath }: { title: string; imagePath: string }) =
                     opacity: 1,
                 },
             }}
-            className="text-xs flex gap-2 flex-col items-center justify-center   h-[100px] w-[160px]  gradient-border"
+            className="text-xs flex gap-2 flex-col items-center justify-center   h-[90px] w-[140px]  gradient-border"
         >
-            <div className="relative h-[50px] w-[50px]">
-                <Image sizes="200px" className="object-contain min-h-[50px] max-h-[50px] " fill src={imagePath} alt={title} />
+            <div className="relative h-10 w-10">
+                <Image sizes="200px" className="object-contain min-h-10 max-h-10 " fill src={imagePath} alt={title} />
             </div>
             <p>{title}</p>
         </motion.div>
